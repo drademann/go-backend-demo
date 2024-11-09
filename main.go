@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 	"go-backend-demo/endpoint"
-	"go-backend-demo/repository"
+	"go-backend-demo/repository/database"
 	"log"
 	"net/http"
 )
 
 func main() {
-	err := repository.OpenDatabase()
+	err := database.Open()
 	if err != nil {
 		log.Fatalf("failed to open database: %v", err)
 	}

@@ -1,4 +1,4 @@
-package repository
+package database
 
 import (
 	"go-backend-demo/repository/entity"
@@ -8,7 +8,7 @@ import (
 
 var db *gorm.DB
 
-func OpenDatabase() error {
+func Open() error {
 	var err error
 	db, err = gorm.Open(sqlite.Open("demo.db"), &gorm.Config{})
 	if err != nil {
@@ -19,4 +19,12 @@ func OpenDatabase() error {
 		return err
 	}
 	return nil
+}
+
+func Transactional(f func(tx *gorm.DB) error) error {
+	return db.Transaction(f)
+}
+
+func Find(users *[]entity.User) *gorm.DB {
+	return db.Find(users)
 }

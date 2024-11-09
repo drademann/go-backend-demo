@@ -2,13 +2,14 @@ package repository
 
 import (
 	"github.com/drademann/fugo/fp"
+	"go-backend-demo/repository/database"
 	"go-backend-demo/repository/entity"
 	"go-backend-demo/service/model"
 )
 
 func FindAllUsers() ([]model.User, error) {
 	var users []entity.User
-	rs := db.Find(&users)
+	rs := database.Find(&users)
 	if rs.Error != nil {
 		return nil, rs.Error
 	}
