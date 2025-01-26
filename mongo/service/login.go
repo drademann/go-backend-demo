@@ -1,12 +1,11 @@
-package user
+package service
 
 import (
 	"fmt"
-	"go-backend-demo/mongo/repository/user"
 )
 
 func Login(name string, password string) (string, error) {
-	u, err := user.FindByName(name)
+	u, err := FindUserByName(name)
 	if err != nil {
 		return "", fmt.Errorf("unknown user - %w", err)
 	}

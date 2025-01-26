@@ -2,7 +2,7 @@ package endpoint
 
 import (
 	"encoding/json"
-	"go-backend-demo/mongo/service/user"
+	"go-backend-demo/mongo/service"
 	"net/http"
 )
 
@@ -17,7 +17,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	jwt, err := user.Login(body.Name, body.Password)
+	jwt, err := service.Login(body.Name, body.Password)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusForbidden)
 		return

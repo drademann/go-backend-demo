@@ -1,4 +1,4 @@
-package user
+package repository
 
 import (
 	"github.com/drademann/fugo/fp"
@@ -8,7 +8,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-func FindAll() ([]model.User, error) {
+func FindAllUsers() ([]model.User, error) {
 	collection := database.Collection("appUser")
 	var users []entity.User
 	err := database.FindAll(collection, &users)
@@ -18,7 +18,7 @@ func FindAll() ([]model.User, error) {
 	return fp.Map(users, toModel), nil
 }
 
-func FindByName(name string) (model.User, error) {
+func FindUserByName(name string) (model.User, error) {
 	collection := database.Collection("appUser")
 	var user entity.User
 	err := database.FindOne(collection, bson.M{"name": name}, &user)
