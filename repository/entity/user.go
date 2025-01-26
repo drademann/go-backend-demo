@@ -1,12 +1,8 @@
 package entity
 
-import "gorm.io/gorm"
+import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type User struct {
-	gorm.Model
-	Name string
-}
-
-func (User) TableName() string {
-	return "app_users"
+	ID   primitive.ObjectID `bson:"_id"`
+	Name string             `bson:"name"`
 }

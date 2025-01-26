@@ -8,17 +8,18 @@ import (
 )
 
 func FindAllUsers() ([]model.User, error) {
+	collection := database.Collection("appUser")
 	var users []entity.User
-	rs := database.Find(&users)
-	if rs.Error != nil {
-		return nil, rs.Error
+	err := database.Find(collection, &users)
+	if err != nil {
+		return nil, err
 	}
-	return fp.Map(users, toUserModel), rs.Error
+	return fp.Map(users, toModelUser), nil
 }
 
-func toUserModel(entity entity.User) model.User {
+func toModelUser(entity entity.User) model.User {
 	return model.User{
-		ID:   model.UserID(entity.ID),
+		ID:   model.UserID(entity.ID.Hex()),
 		Name: entity.Name,
 	}
 }

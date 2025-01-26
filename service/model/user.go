@@ -1,6 +1,6 @@
 package model
 
-type UserID uint
+type UserID string
 
 type User struct {
 	ID   UserID
