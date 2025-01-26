@@ -3,9 +3,9 @@ package endpoint
 import (
 	"encoding/json"
 	"github.com/drademann/fugo/fp"
-	"go-backend-demo/endpoint/dto"
-	"go-backend-demo/service"
-	"go-backend-demo/service/model"
+	"go-backend-demo/mongo/endpoint/dto"
+	"go-backend-demo/mongo/service"
+	"go-backend-demo/mongo/service/model"
 	"net/http"
 )
 
@@ -18,7 +18,7 @@ func getAllUsers(w http.ResponseWriter, _ *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	err = json.NewEncoder(w).Encode(fp.Map(users, func(user model.User) dto.User {
 		return dto.User{
-			ID:   uint(user.ID),
+			ID:   string(user.ID),
 			Name: user.Name,
 		}
 	}))

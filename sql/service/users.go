@@ -1,8 +1,8 @@
 package service
 
 import (
-	"go-backend-demo/repository"
-	"go-backend-demo/service/model"
+	"go-backend-demo/sql/repository"
+	"go-backend-demo/sql/service/model"
 )
 
 func FindAllUsers() ([]model.User, error) {

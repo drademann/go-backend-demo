@@ -2,9 +2,9 @@ package repository
 
 import (
 	"github.com/drademann/fugo/fp"
-	"go-backend-demo/repository/database"
-	"go-backend-demo/repository/entity"
-	"go-backend-demo/service/model"
+	"go-backend-demo/sql/repository/database"
+	"go-backend-demo/sql/repository/entity"
+	"go-backend-demo/sql/service/model"
 )
 
 func FindAllUsers() ([]model.User, error) {

@@ -1,4 +1,4 @@
-module go-backend-demo
+module go-backend-demo/sql
 
 go 1.23
 

@@ -1,20 +1,20 @@
 package main
 
 import (
-	"fmt"
-	"go-backend-demo/endpoint"
-	"go-backend-demo/repository/database"
+	"go-backend-demo/mongo/endpoint"
+	"go-backend-demo/mongo/repository/database"
 	"log"
 	"net/http"
 )
 
 func main() {
-	err := database.Open()
+	err := database.Open("demo")
 	if err != nil {
 		log.Fatalf("failed to open database: %v", err)
 	}
+	defer database.Close()
 
 	endpoint.DefaultRouter()
-	fmt.Println("starting server at http://localhost:8000")
+	log.Println("starting server at http://localhost:8000")
 	log.Fatalln(http.ListenAndServe(":8000", nil))
 }

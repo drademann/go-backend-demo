@@ -1,7 +1,7 @@
 package database
 
 import (
-	"go-backend-demo/repository/entity"
+	"go-backend-demo/sql/repository/entity"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -19,10 +19,6 @@ func Open() error {
 		return err
 	}
 	return nil
-}
-
-func Transactional(f func(tx *gorm.DB) error) error {
-	return db.Transaction(f)
 }
 
 func Find(users *[]entity.User) *gorm.DB {
