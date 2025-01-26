@@ -15,6 +15,6 @@ func main() {
 	defer database.Close()
 
 	endpoint.DefaultRouter()
-	log.Println("starting server at http://localhost:8000")
-	log.Fatalln(http.ListenAndServe(":8000", nil))
+	log.Println("starting server at https://localhost:8443")
+	log.Fatalln(http.ListenAndServeTLS(":8443", "server.crt", "server.key", nil))
 }
