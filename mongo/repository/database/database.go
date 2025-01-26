@@ -50,3 +50,9 @@ func FindAll(collection *mongo.Collection, result interface{}) error {
 	defer cursor.Close(ctx)
 	return cursor.All(ctx, result)
 }
+
+func FindOne(collection *mongo.Collection, filter interface{}, result interface{}) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
+	defer cancel()
+	return collection.FindOne(ctx, filter).Decode(result)
+}

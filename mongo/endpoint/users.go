@@ -4,13 +4,13 @@ import (
 	"encoding/json"
 	"github.com/drademann/fugo/fp"
 	"go-backend-demo/mongo/endpoint/dto"
-	"go-backend-demo/mongo/service"
 	"go-backend-demo/mongo/service/model"
+	"go-backend-demo/mongo/service/user"
 	"net/http"
 )
 
 func getAllUsers(w http.ResponseWriter, _ *http.Request) {
-	users, err := service.FindAllUsers()
+	users, err := user.FindAll()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

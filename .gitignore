@@ -5,13 +5,13 @@
 !/.gitignore
 
 !*.go
-!go.sum
-!go.mod
+!**/go.sum
+!**/go.mod
 
-!README.md
+!**/*.http
+
+!**/README.md
 !LICENSE
-
-# !Makefile
 
 # ...even if they are in subdirectories
 !*/
