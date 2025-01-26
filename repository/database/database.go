@@ -40,7 +40,7 @@ func Collection(name string) *mongo.Collection {
 	return database.Collection(name)
 }
 
-func Find(collection *mongo.Collection, result interface{}) error {
+func FindAll(collection *mongo.Collection, result interface{}) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 60*time.Second)
 	defer cancel()
 	cursor, err := collection.Find(ctx, bson.D{})

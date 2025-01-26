@@ -10,7 +10,7 @@ import (
 func FindAllUsers() ([]model.User, error) {
 	collection := database.Collection("appUser")
 	var users []entity.User
-	err := database.Find(collection, &users)
+	err := database.FindAll(collection, &users)
 	if err != nil {
 		return nil, err
 	}
