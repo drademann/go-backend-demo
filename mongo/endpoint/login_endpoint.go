@@ -17,7 +17,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
-	jwt, err := service.Login(body.Name, body.Password)
+	jwt, err := service.NewLoginService().Login(body.Name, body.Password)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusForbidden)
 		return

@@ -8,27 +8,33 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-func FindAllUsers() ([]model.User, error) {
+type UserRepository struct{}
+
+func NewUserRepository() *UserRepository {
+	return &UserRepository{}
+}
+
+func (r *UserRepository) FindAllUsers() ([]model.User, error) {
 	collection := database.Collection("appUser")
 	var users []entity.User
 	err := database.FindAll(collection, &users)
 	if err != nil {
 		return nil, err
 	}
-	return fp.Map(users, toModel), nil
+	return fp.Map(users, toUserModel), nil
 }
 
-func FindUserByName(name string) (model.User, error) {
+func (r *UserRepository) FindUserByName(name string) (model.User, error) {
 	collection := database.Collection("appUser")
 	var user entity.User
 	err := database.FindOne(collection, bson.M{"name": name}, &user)
 	if err != nil {
 		return model.User{}, err
 	}
-	return toModel(user), nil
+	return toUserModel(user), nil
 }
 
-func toModel(entity entity.User) model.User {
+func toUserModel(entity entity.User) model.User {
 	return model.User{
 		ID:       model.UserID(entity.ID.Hex()),
 		Name:     entity.Name,
