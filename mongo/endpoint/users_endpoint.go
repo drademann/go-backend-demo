@@ -10,7 +10,7 @@ import (
 )
 
 func getAllUsers(w http.ResponseWriter, _ *http.Request) {
-	users, err := service.NewUserService().FindAllUsers()
+	users, err := service.NewUserService().FindAll()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

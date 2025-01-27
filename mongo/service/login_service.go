@@ -14,7 +14,7 @@ func newLoginService(repository *repository.UserRepository) LoginService {
 }
 
 func (s *loginService) Login(name string, password string) (string, error) {
-	u, err := s.repository.FindUserByName(name)
+	u, err := s.repository.FindByName(name)
 	if err != nil {
 		return "", fmt.Errorf("unknown user - %w", err)
 	}

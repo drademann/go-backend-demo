@@ -14,8 +14,8 @@ func NewLoginService() LoginService {
 }
 
 type UserService interface {
-	FindAllUsers() ([]model.User, error)
-	FindUserByName(name string) (model.User, error)
+	FindAll() ([]model.User, error)
+	FindByName(name string) (model.User, error)
 }
 
 func NewUserService() UserService {

@@ -14,7 +14,7 @@ func NewUserRepository() *UserRepository {
 	return &UserRepository{}
 }
 
-func (r *UserRepository) FindAllUsers() ([]model.User, error) {
+func (r *UserRepository) FindAll() ([]model.User, error) {
 	collection := database.Collection("appUser")
 	var users []entity.User
 	err := database.FindAll(collection, &users)
@@ -24,7 +24,7 @@ func (r *UserRepository) FindAllUsers() ([]model.User, error) {
 	return fp.Map(users, toUserModel), nil
 }
 
-func (r *UserRepository) FindUserByName(name string) (model.User, error) {
+func (r *UserRepository) FindByName(name string) (model.User, error) {
 	collection := database.Collection("appUser")
 	var user entity.User
 	err := database.FindOne(collection, bson.M{"name": name}, &user)
